@@ -10,7 +10,6 @@ function App() {
     return (
         <GridThemeProvider>
             <div className="App">
-                <Banner/>
                 <Example/>
 
             </div>

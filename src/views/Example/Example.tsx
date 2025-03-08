@@ -1,48 +1,24 @@
 import {useEffect, useRef, useState} from 'react';
+import { Unity, useUnityContext } from "react-unity-webgl";
 
 
 
 const Example = () => {
     const [isVisible, setVisible] = useState(true);
-    const [value, setValue] = useState<string>('Acrool is an developer driven platform to visually design and manage project infrastructure, collaboratively.\n' +
-        '\n' +
-        'It\'s the solution for any providerAcrool is an developer driven platform to visually design and manage project infrastructure, collaboratively.\n' +
-        '\n' +
-        'It\'s the solution for any providerAcrool is an developer driven platform to visually design and manage project infrastructure, collaboratively.\n' +
-        '\n' +
-        'It\'s the solution for any providerAcrool is an developer driven platform to visually design and manage project infrastructure, collaboratively.\n' +
-        '\n' +
-        'It\'s the solution for any provider');
+    const { unityProvider } = useUnityContext({
+        loaderUrl: "/data/Snake.loader.js",
+        dataUrl: "/data/Snake.data.br",
+        frameworkUrl: "/data/Snake.framework.js.br",
+        codeUrl: "/data/Snake.wasm.br",
+    });
 
-    const mainRef = useRef<HTMLTextAreaElement>(null);
-
-
-    useEffect(() => {
-        if(isVisible) {
-            if(mainRef.current) {
-                mainRef.current.focus();
-            }
-        }
-
-    }, [isVisible]);
 
     const renderContent = () => {
-
-
-
-        return <div
-            style={{wordBreak: 'break-all'}}
-            className="text-left"
-        >
-            {value}
-        </div>;
-
+        return <Unity unityProvider={unityProvider} style={{width: '100%', height: '100%'}}/>;
     };
 
 
-    return <div style={{maxWidth: '500px', width: '100%', margin: '0 auto'}}>
-
-        <button type="button" onClick={() => setVisible(curr => !curr)}>{String(isVisible)}</button>
+    return <div style={{width: '100%', height: '100%', margin: '0 auto'}}>
 
         {renderContent()}
     </div>;
