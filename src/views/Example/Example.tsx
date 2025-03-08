@@ -1,17 +1,39 @@
-import {useEffect, useRef, useState} from 'react';
-import { Unity, useUnityContext } from "react-unity-webgl";
+import {useCallback, useEffect, useRef, useState} from 'react';
+import { Unity, useUnityContext,  } from "react-unity-webgl";
+import { ReactUnityEventParameter } from 'react-unity-webgl/distribution/types/react-unity-event-parameters';
 import Button from "../../components/Button";
 
 
 
 const Example = () => {
     const [isVisible, setVisible] = useState(true);
-    const { unityProvider, sendMessage } = useUnityContext({
+    const [score, setScore] = useState<number>(0);
+
+    const { unityProvider, sendMessage, addEventListener, removeEventListener  } = useUnityContext({
         loaderUrl: "/data/Snake.loader.js",
         dataUrl: "/data/Snake.data.br",
         frameworkUrl: "/data/Snake.framework.js.br",
         codeUrl: "/data/Snake.wasm.br",
     });
+
+
+    useEffect(() => {
+        addEventListener("SetScore", handleSetScore);
+        return () => {
+            removeEventListener("SetScore", handleSetScore);
+        };
+    }, [addEventListener, removeEventListener, setScore]);
+
+
+
+    /**
+     * 設定分數
+     */
+    const handleSetScore = useCallback((score: any) => {
+        // Do something with the score
+        setScore(score);
+    }, []);
+
 
 
     const send = () => {
@@ -28,6 +50,7 @@ const Example = () => {
         {renderContent()}
 
         <Button onClick={send}>Set PrevScroe</Button>
+        <div>current score: {score}</div>
     </div>;
 };
 
