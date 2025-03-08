@@ -9,7 +9,7 @@ const Example = () => {
     const [isVisible, setVisible] = useState(true);
     const [score, setScore] = useState<number>(0);
 
-    const { unityProvider, sendMessage, addEventListener, removeEventListener  } = useUnityContext({
+    const { unityProvider, sendMessage, addEventListener, removeEventListener, isLoaded, loadingProgression  } = useUnityContext({
         loaderUrl: "/data/Snake.loader.js",
         dataUrl: "/data/Snake.data.br",
         frameworkUrl: "/data/Snake.framework.js.br",
@@ -41,11 +41,14 @@ const Example = () => {
     }
 
     const renderContent = () => {
+
         return <Unity unityProvider={unityProvider} style={{width: '100%', height: '100%'}}/>;
     };
 
 
     return <div style={{width: '100%', height: '100%', margin: '0 auto'}}>
+
+        {!isLoaded && <p>Loading Application... {Math.round(loadingProgression * 100)}%</p>}
 
         {renderContent()}
 
