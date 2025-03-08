@@ -1,7 +1,7 @@
 #  Unity 練習 - 貪食蛇
 
-<a href="https://imagine-unity-snake.pages.dev" title="Acrool React Auto Height Textarea">
-    <img src="https://raw.githubusercontent.com/acrool/acrool-react-auto-height-textarea/main/example/public/og.webp" alt="Acrool React Auto Height Textarea Logo"/>
+<a href="https://imagine-unity-snake.pages.dev" title="Unity Snake React">
+    <img src="https://github.com/imagine10255/unity-snake-react/blob/58c849623d032a4af9a148b3c08c9a3d96cba10e/preview.png" alt="Unity Snake React"/>
 </a>
 
 
